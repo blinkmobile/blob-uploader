@@ -4,7 +4,8 @@
   "description": "Facilitates blob uploads for S3 storage",
   "main": "types.js",
   "scripts": {
-    "flow_check": "flow check"
+    "flow_check": "flow check",
+    "test": "blue-tape test/**/*.js"
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "license": "MIT",
