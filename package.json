@@ -1,0 +1,20 @@
+{
+  "name": "bm-blob-uploader",
+  "version": "0.0.1",
+  "description": "Facilitates blob uploads for BlinkMobile services.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "author": "Kieren Powell <kieren@blinkmobile.com.au>",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.57.0",
+    "boom": "^4.3.1",
+    "dotenv": "^4.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "flow-bin": "^0.46.0"
+  }
+}

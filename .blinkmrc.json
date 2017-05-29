@@ -1,0 +1,13 @@
+{
+  "server": {
+    "project": "bm-blob-uploader.api.blinkm.io",
+    "region": "ap-southeast-2",
+    "cors": true,
+    "routes": [
+      {
+        "route": "/v1/signedURL",
+        "module": "./api/v1/signedURL.js"
+      }
+    ]
+  }
+}
