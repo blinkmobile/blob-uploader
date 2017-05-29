@@ -1,7 +1,7 @@
 /* @flow */
 'use strict'
 
-//const test = require('ava')
+const test = require('blue-tape')
 
 var lib = require('../../lib/s3-urls.js')
 

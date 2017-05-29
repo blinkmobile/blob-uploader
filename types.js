@@ -5,12 +5,12 @@
 export type BmRequest = {
     body : any,
     url: {
-    host: string,
-    hostname: string,
-    pathname: string,
-    protocol: 'http:' | 'https:',
-    query: BlobQuery
-  }
+        host: string,
+        hostname: string,
+        pathname: string,
+        protocol: 'http:' | 'https:',
+        query: BlobQuery
+    }
 }
 
 export type BlobQuery = {

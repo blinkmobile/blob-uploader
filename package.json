@@ -5,7 +5,7 @@
   "main": "types.js",
   "scripts": {
     "flow_check": "flow check",
-    "test": "blue-tape test/**/*.js"
+    "test": "blue-tape test/**/*.js test/**/**/*.js"
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "license": "MIT",
