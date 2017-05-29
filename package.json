@@ -1,9 +1,10 @@
 {
-  "name": "bm-blob-uploader",
+  "name": "blob-uploader",
   "version": "0.0.1",
-  "description": "Facilitates blob uploads for BlinkMobile services.",
-  "main": "index.js",
+  "description": "Facilitates blob uploads for S3 storage",
+  "main": "types.js",
   "scripts": {
+    "flow_check": "flow check",
     "test": "ava"
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",

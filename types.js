@@ -14,12 +14,12 @@ export type BmRequest = {
 }
 
 export type BlobQuery = {
-    blobName: string
+    blobName: string 
 }
 
 export type BmResponse = {
-    geturl: string,
-    posturl: string
+    getUrl: string,
+    postUrl: string
 }
 
 */
