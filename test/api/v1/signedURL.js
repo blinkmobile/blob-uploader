@@ -23,7 +23,7 @@ test('Should throw boom error if blobname not provided', (t)=>{
             }
         }
     }
-    
+
     try{
         api.get(request)
     }
@@ -32,3 +32,21 @@ test('Should throw boom error if blobname not provided', (t)=>{
         t.deepEqual(err,boom.badRequest('Please provide blobname','blobname'))
     }
 })
+
+// test('Should succeed with a valid request', (t) => {
+//     t.plan(1)
+//     var request /*:BmRequest */= {
+//         body: '',
+//         url : {
+//             host: 'www.test.com',
+//             hostname: 'test',
+//             pathname: '/api/signedURL',
+//             protocol: 'https:',
+//             query: {
+//                 blobName: 'testblob'
+//             }
+//         }
+//     }
+
+//     return api.get(request)
+// })

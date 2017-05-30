@@ -18,4 +18,5 @@ test('Should succeed when environment variable set', (t)=>{
     t.plan(1)
     process.env.TEST = 'test'
     t.is(lib('TEST'),'test')
+    process.env.TEST = ''
 })
