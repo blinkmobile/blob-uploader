@@ -62,10 +62,20 @@ test('Should failed when geturl fails', (t) => {
     process.env.S3_BUCKET = 'testbucket'
     var result = lib.retrieveS3Urls('blobTest')
 
-    td.verify(aws.prototype.getSignedUrl('getObject',td.matchers.anything(),td.matchers.anything()))
-    td.verify(aws.prototype.getSignedUrl('putObject',td.matchers.anything(),td.matchers.anything()))
-
-    
+    td.verify(
+        aws.prototype.getSignedUrl(
+            'getObject',
+            td.matchers.anything(),
+            td.matchers.anything()
+        )
+    )
+    td.verify(
+        aws.prototype.getSignedUrl(
+            'putObject',
+            td.matchers.anything(),
+            td.matchers.anything()
+        )
+    )
 
     td.reset()
     process.env.S3_BUCKET = ''
@@ -96,10 +106,20 @@ test('Should failed when puturl fails', (t) => {
     process.env.S3_BUCKET = 'testbucket'
     var result = lib.retrieveS3Urls('blobTest')
 
-    td.verify(aws.prototype.getSignedUrl('getObject',td.matchers.anything(),td.matchers.anything()))
-    td.verify(aws.prototype.getSignedUrl('putObject',td.matchers.anything(),td.matchers.anything()))
-
-    
+    td.verify(
+        aws.prototype.getSignedUrl(
+            'getObject',
+            td.matchers.anything(),
+            td.matchers.anything()
+        )
+    )
+    td.verify(
+        aws.prototype.getSignedUrl(
+            'putObject',
+            td.matchers.anything()
+            ,td.matchers.anything()
+        )
+    )
 
     td.reset()
     process.env.S3_BUCKET = ''
