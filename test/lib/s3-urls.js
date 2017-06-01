@@ -6,7 +6,7 @@ const td = require('testdouble')
 const boom = require('boom')
 
 test('Should succeed when passed valid input', (t) => {
-    var aws = td.replace('aws-sdk').S3
+    const aws = td.replace('aws-sdk').S3
     td.when(
         aws.prototype.getSignedUrl(
             'getObject',
@@ -27,10 +27,10 @@ test('Should succeed when passed valid input', (t) => {
         'www.puturl.com'
     )
     
-    var lib = require('../../lib/s3-urls.js')
+    const lib = require('../../lib/s3-urls.js')
 
     process.env.S3_BUCKET = 'testbucket'
-    var result = lib.retrieveS3Urls('blobTest')
+    const result = lib.retrieveS3Urls('blobTest')
 
     td.verify(
         aws.prototype.getSignedUrl(
@@ -54,7 +54,7 @@ test('Should succeed when passed valid input', (t) => {
 })
 
 test('Should failed when geturl fails', (t) => {
-    var aws = td.replace('aws-sdk').S3
+    const aws = td.replace('aws-sdk').S3
     td.when(
         aws.prototype.getSignedUrl(
             'getObject',
@@ -74,10 +74,10 @@ test('Should failed when geturl fails', (t) => {
         'www.puturl.com'
     )
     
-    var lib = require('../../lib/s3-urls.js')
+    const lib = require('../../lib/s3-urls.js')
 
     process.env.S3_BUCKET = 'testbucket'
-    var result = lib.retrieveS3Urls('blobTest')
+    const result = lib.retrieveS3Urls('blobTest')
 
     td.verify(
         aws.prototype.getSignedUrl(
@@ -100,7 +100,7 @@ test('Should failed when geturl fails', (t) => {
 })
 
 test('Should failed when puturl fails', (t) => {
-    var aws = td.replace('aws-sdk').S3
+    const aws = td.replace('aws-sdk').S3
     td.when(
         aws.prototype.getSignedUrl(
             'getObject',
@@ -120,10 +120,10 @@ test('Should failed when puturl fails', (t) => {
         ''
     )
     
-    var lib = require('../../lib/s3-urls.js')
+    const lib = require('../../lib/s3-urls.js')
 
     process.env.S3_BUCKET = 'testbucket'
-    var result = lib.retrieveS3Urls('blobTest')
+    const result = lib.retrieveS3Urls('blobTest')
 
     td.verify(
         aws.prototype.getSignedUrl(

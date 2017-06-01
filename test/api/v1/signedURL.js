@@ -11,7 +11,7 @@ const api = require('../../../api/v1/signedURL.js')
 
 test('Should throw boom error if blobname not provided', (t)=>{
     t.plan(1)
-    var request /*:BmRequest */= {
+    const request /*:BmRequest */= {
         body: '',
         url : {
             host: 'www.test.com',
