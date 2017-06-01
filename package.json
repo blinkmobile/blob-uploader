@@ -2,7 +2,7 @@
   "name": "blob-uploader",
   "version": "0.0.1",
   "description": "Facilitates blob uploads for S3 storage",
-  "main": "types.js",
+  "main": "api/v1/signedURL.js",
   "scripts": {
     "flow_check": "flow check",
     "test": "blue-tape test/**/*.js test/**/**/*.js",
