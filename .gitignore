@@ -11,3 +11,7 @@ node_modules
 
 # ds_store
 .ds_store
+
+.eslintcache
+
+npm-debug.log
