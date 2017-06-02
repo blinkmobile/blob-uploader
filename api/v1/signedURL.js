@@ -25,12 +25,9 @@ module.exports.get = function get (
   }
 
     // return signed urls for putting and later retrieving the blob
-  return s3urls.retrieveS3Urls(request.url.query.blobName)
-        .catch(
-            function (err) {
-              console.log('Error calling S3 to retrieve signed URLs: ' + err)
-              throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
-            }
-
-    )
+  return s3urls(request.url.query.blobName)
+        .catch((err) => {
+          console.log('Error calling S3 to retrieve signed URLs: ' + err)
+          throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
+        })
 }
