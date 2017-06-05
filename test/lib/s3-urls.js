@@ -49,7 +49,12 @@ test('Should succeed when passed valid input', (t) => {
   td.reset()
   process.env.S3_BUCKET = ''
 
-  return result // verify values of result
+  result.then((urls) => {
+    t.assert(urls.getUrl, 'www.geturl.com')
+    t.assert(urls.putUrl, 'www.puturl.com')
+  })
+
+  t.end()
 })
 
 test('Should failed when geturl fails', (t) => {
