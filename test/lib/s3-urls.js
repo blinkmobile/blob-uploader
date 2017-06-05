@@ -50,8 +50,8 @@ test('Should succeed when passed valid input', (t) => {
   process.env.S3_BUCKET = ''
 
   result.then((urls) => {
-    t.assert(urls.getUrl, 'www.geturl.com')
-    t.assert(urls.putUrl, 'www.puturl.com')
+    t.equal(urls.getUrl, 'www.geturl.com')
+    t.equal(urls.putUrl, 'www.puturl.com')
   })
 
   t.end()
