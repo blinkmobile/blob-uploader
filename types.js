@@ -14,7 +14,7 @@ export type BmRequest = {
 }
 
 export type BlobQuery = {
-    blobName: string 
+    blobName: string
 }
 
 export type BmResponse = {

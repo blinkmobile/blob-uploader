@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "standard"
+  ],
+  "plugins": [
+    "node"
+  ],
+  "rules": {
+    "no-console":"off"
+  }
+}

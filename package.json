@@ -2,10 +2,11 @@
   "name": "blob-uploader",
   "version": "0.0.1",
   "description": "Facilitates blob uploads for S3 storage",
-  "main": "types.js",
+  "main": "api/v1/signedURL.js",
   "scripts": {
     "flow_check": "flow check",
-    "test": "blue-tape test/**/*.js test/**/**/*.js"
+    "test": "blue-tape test/**/*.js test/**/**/*.js",
+    "eslint": "eslint --fix --cache ."
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "license": "MIT",
@@ -16,7 +17,21 @@
   },
   "devDependencies": {
     "blue-tape": "^1.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.46.0",
     "testdouble": "^2.1.2"
-  }
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=3"
+  },
+  "files": [
+    "api",
+    "lib"
+  ]
 }

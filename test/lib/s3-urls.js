@@ -3,11 +3,10 @@
 
 const test = require('blue-tape')
 const td = require('testdouble')
-const boom = require('boom')
 
 test('Should succeed when passed valid input', (t) => {
-    var aws = td.replace('aws-sdk').S3
-    td.when(
+  const aws = td.replace('aws-sdk').S3
+  td.when(
         aws.prototype.getSignedUrl(
             'getObject',
             td.matchers.anything()
@@ -17,7 +16,7 @@ test('Should succeed when passed valid input', (t) => {
         'www.geturl.com'
     )
 
-    td.when(
+  td.when(
         aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything()
@@ -26,20 +25,20 @@ test('Should succeed when passed valid input', (t) => {
         null,
         'www.puturl.com'
     )
-    
-    var lib = require('../../lib/s3-urls.js')
 
-    process.env.S3_BUCKET = 'testbucket'
-    var result = lib.retrieveS3Urls('blobTest')
+  const retrieveS3Urls = require('../../lib/s3-urls.js')
 
-    td.verify(
+  process.env.S3_BUCKET = 'testbucket'
+  const result = retrieveS3Urls('blobTest')
+
+  td.verify(
         aws.prototype.getSignedUrl(
             'getObject',
             td.matchers.anything(),
             td.matchers.anything()
         )
     )
-    td.verify(
+  td.verify(
         aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything(),
@@ -47,15 +46,20 @@ test('Should succeed when passed valid input', (t) => {
         )
     )
 
-    td.reset()
-    process.env.S3_BUCKET = ''
+  td.reset()
+  process.env.S3_BUCKET = ''
 
-    return result
+  result.then((urls) => {
+    t.equal(urls.getUrl, 'www.geturl.com')
+    t.equal(urls.putUrl, 'www.puturl.com')
+  })
+
+  t.end()
 })
 
 test('Should failed when geturl fails', (t) => {
-    var aws = td.replace('aws-sdk').S3
-    td.when(
+  const aws = td.replace('aws-sdk').S3
+  td.when(
         aws.prototype.getSignedUrl(
             'getObject',
             td.matchers.anything()
@@ -64,7 +68,7 @@ test('Should failed when geturl fails', (t) => {
         'S3 is down',
         ''
     )
-    td.when(
+  td.when(
         aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything()
@@ -73,20 +77,20 @@ test('Should failed when geturl fails', (t) => {
         null,
         'www.puturl.com'
     )
-    
-    var lib = require('../../lib/s3-urls.js')
 
-    process.env.S3_BUCKET = 'testbucket'
-    var result = lib.retrieveS3Urls('blobTest')
+  const retrieveS3Urls = require('../../lib/s3-urls.js')
 
-    td.verify(
+  process.env.S3_BUCKET = 'testbucket'
+  const result = retrieveS3Urls('blobTest')
+
+  td.verify(
         aws.prototype.getSignedUrl(
             'getObject',
             td.matchers.anything(),
             td.matchers.anything()
         )
     )
-    td.verify(
+  td.verify(
         aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything(),
@@ -94,14 +98,14 @@ test('Should failed when geturl fails', (t) => {
         )
     )
 
-    td.reset()
-    process.env.S3_BUCKET = ''
-    return t.shouldReject(result)
+  td.reset()
+  process.env.S3_BUCKET = ''
+  return t.shouldReject(result)
 })
 
 test('Should failed when puturl fails', (t) => {
-    var aws = td.replace('aws-sdk').S3
-    td.when(
+  const aws = td.replace('aws-sdk').S3
+  td.when(
         aws.prototype.getSignedUrl(
             'getObject',
             td.matchers.anything()
@@ -110,7 +114,7 @@ test('Should failed when puturl fails', (t) => {
         null,
         'www.geturl.com'
     )
-    td.when(
+  td.when(
         aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything()
@@ -119,28 +123,28 @@ test('Should failed when puturl fails', (t) => {
         'S3 is down',
         ''
     )
-    
-    var lib = require('../../lib/s3-urls.js')
 
-    process.env.S3_BUCKET = 'testbucket'
-    var result = lib.retrieveS3Urls('blobTest')
+  const retrieveS3Urls = require('../../lib/s3-urls.js')
 
-    td.verify(
+  process.env.S3_BUCKET = 'testbucket'
+  const result = retrieveS3Urls('blobTest')
+
+  td.verify(
         aws.prototype.getSignedUrl(
             'getObject',
             td.matchers.anything(),
             td.matchers.anything()
         )
     )
-    td.verify(
+  td.verify(
         aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything()
-            ,td.matchers.anything()
+            , td.matchers.anything()
         )
     )
 
-    td.reset()
-    process.env.S3_BUCKET = ''
-    return t.shouldReject(result)
+  td.reset()
+  process.env.S3_BUCKET = ''
+  return t.shouldReject(result)
 })
