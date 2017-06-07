@@ -58,6 +58,61 @@ test('Should succeed when passed valid input', (t) => {
   t.end()
 })
 
+test('Returns id when id passed in', (t) => {
+  const aws = td.replace('aws-sdk').S3
+  td.when(
+        aws.prototype.getSignedUrl(
+            'getObject',
+            td.matchers.anything()
+        )
+    ).thenCallback(
+        null,
+        'www.geturl.com'
+    )
+
+  td.when(
+        aws.prototype.getSignedUrl(
+            'putObject',
+            td.matchers.anything()
+        )
+    ).thenCallback(
+        null,
+        'www.puturl.com'
+    )
+
+  const retrieveS3Urls = require('../../lib/s3-urls.js')
+
+  process.env.S3_BUCKET = 'testbucket'
+  const id = 'dfosdkjfsdfj'
+  const result = retrieveS3Urls(id)
+
+  td.verify(
+        aws.prototype.getSignedUrl(
+            'getObject',
+            td.matchers.anything(),
+            td.matchers.anything()
+        )
+    )
+  td.verify(
+        aws.prototype.getSignedUrl(
+            'putObject',
+            td.matchers.anything(),
+            td.matchers.anything()
+        )
+    )
+
+  td.reset()
+  process.env.S3_BUCKET = ''
+
+  result.then((urls) => {
+    t.equal(urls.getUrl, 'www.geturl.com')
+    t.equal(urls.putUrl, 'www.puturl.com')
+    t.equal(urls.id, id)
+  })
+
+  t.end()
+})
+
 test('Should failed when geturl fails', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
