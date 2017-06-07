@@ -29,7 +29,7 @@ test('Should succeed when passed valid input', (t) => {
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
-  const result = retrieveS3Urls('blobTest')
+  const result = retrieveS3Urls()
 
   td.verify(
         aws.prototype.getSignedUrl(
@@ -52,6 +52,7 @@ test('Should succeed when passed valid input', (t) => {
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
     t.equal(urls.putUrl, 'www.puturl.com')
+    t.assert(urls.id.length > 0)
   })
 
   t.end()
@@ -81,7 +82,7 @@ test('Should failed when geturl fails', (t) => {
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
-  const result = retrieveS3Urls('blobTest')
+  const result = retrieveS3Urls()
 
   td.verify(
         aws.prototype.getSignedUrl(
@@ -127,7 +128,7 @@ test('Should failed when puturl fails', (t) => {
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
-  const result = retrieveS3Urls('blobTest')
+  const result = retrieveS3Urls()
 
   td.verify(
         aws.prototype.getSignedUrl(

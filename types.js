@@ -8,18 +8,14 @@ export type BmRequest = {
         host: string,
         hostname: string,
         pathname: string,
-        protocol: 'http:' | 'https:',
-        query: BlobQuery
+        protocol: 'http:' | 'https:'
     }
-}
-
-export type BlobQuery = {
-    blobName: string
 }
 
 export type BmResponse = {
     getUrl: string,
-    postUrl: string
+    postUrl: string,
+    id: string
 }
 
 */
