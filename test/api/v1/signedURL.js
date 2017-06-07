@@ -13,7 +13,7 @@ test('Should throw bad implementation if library fails', (t) => {
   // setup stub of library
   const s3urls = td.replace('../../../lib/s3-urls.js')
   td.when(
-    s3urls()
+    s3urls(td.matchers.anything())
     ).thenReject('Couldnt retrieve URLs')
 
   const request /*: BmRequest */= {
@@ -22,7 +22,8 @@ test('Should throw bad implementation if library fails', (t) => {
       host: 'www.test.com',
       hostname: 'test',
       pathname: '/api/signedURL',
-      protocol: 'https:'
+      protocol: 'https:',
+      query: {}
     }
   }
 
