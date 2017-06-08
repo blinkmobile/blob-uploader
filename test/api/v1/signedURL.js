@@ -2,7 +2,11 @@
 'use strict'
 
 /* ::
-import type {BmRequest} from '../../../types.js'
+import type {BmGetRequest} from '../../../types.js'
+*/
+
+/* ::
+import type {BmPutRequest} from '../../../types.js'
 */
 
 const test = require('blue-tape')
@@ -13,17 +17,16 @@ test('Should throw bad implementation if library fails', (t) => {
   // setup stub of library
   const s3urls = td.replace('../../../lib/s3-urls.js')
   td.when(
-    s3urls(td.matchers.anything())
+    s3urls()
     ).thenReject('Couldnt retrieve URLs')
 
-  const request /*: BmRequest */= {
+  const request /*: BmGetRequest */= {
     body: '',
     url: {
       host: 'www.test.com',
       hostname: 'test',
       pathname: '/api/signedURL',
-      protocol: 'https:',
-      query: {}
+      protocol: 'https:'
     }
   }
 

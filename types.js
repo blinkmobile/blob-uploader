@@ -2,19 +2,25 @@
 'use strict'
 
 /* ::
-export type BmRequest = {
+export type BmGetRequest = {
     body : any,
     url: {
         host: string,
         hostname: string,
         pathname: string,
-        protocol: 'http:' | 'https:',
-        query: BlobQuery
+        protocol: 'http:' | 'https:'
     }
 }
 
-export type BlobQuery = {
-    id?: string
+export type BmPutRequest = {
+    body : any,
+    url: {
+        host: string,
+        hostname: string,
+        params : { [id:string]: string },
+        pathname: string,
+        protocol: 'http:' | 'https:'
+    }
 }
 
 export type BmResponse = {

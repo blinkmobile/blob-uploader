@@ -7,6 +7,10 @@
       {
         "route": "/v1/signedURL",
         "module": "./api/v1/signedURL.js"
+      },
+      {
+        "route": "/v1/signedURL/{id}",
+        "module": "./api/v1/signedURL.js"
       }
     ]
   }
