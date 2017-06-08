@@ -25,7 +25,7 @@ export type BmPutRequest = {
 
 export type BmResponse = {
     getUrl: string,
-    postUrl: string,
+    putUrl: string,
     id: string
 }
 

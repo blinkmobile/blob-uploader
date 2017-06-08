@@ -47,7 +47,7 @@ test('Should throw bad implementation if library fails', (t) => {
 test('Should return id when id passed', t => {
   // setup stub of library
   const response /*: BmResponse */= {
-    postUrl: 'put',
+    putUrl: 'put',
     getUrl: 'get',
     id: 'test123'
   }
