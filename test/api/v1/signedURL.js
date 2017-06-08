@@ -2,7 +2,11 @@
 'use strict'
 
 /* ::
-import type {BmGetRequest} from '../../../types.js'
+import type {BmPostRequest} from '../../../types.js'
+*/
+
+/* ::
+import type {BmPostResponse} from '../../../types.js'
 */
 
 /* ::
@@ -10,7 +14,7 @@ import type {BmPutRequest} from '../../../types.js'
 */
 
 /* ::
-import type {BmResponse} from '../../../types.js'
+import type {BmPutResponse} from '../../../types.js'
 */
 
 const test = require('blue-tape')
@@ -24,7 +28,7 @@ test('Should throw bad implementation if library fails', (t) => {
     s3urls()
     ).thenReject('Couldnt retrieve URLs')
 
-  const request /*: BmGetRequest */= {
+  const request /*: BmPostRequest */= {
     body: '',
     url: {
       host: 'www.test.com',
@@ -35,45 +39,10 @@ test('Should throw bad implementation if library fails', (t) => {
   }
 
   const api = require('../../../api/v1/signedURL.js')
-  api.get(request)
+  api.post(request)
   .catch((err) => {
     console.log('In promise catch: ' + err)
     t.deepEqual(err, boom.badImplementation('Error calling S3 to retrieve signed URLs: Couldnt retrieve URLs'))
-  })
-
-  t.end()
-})
-
-test('Should return id when id passed', t => {
-  // setup stub of library
-  const response /*: BmResponse */= {
-    putUrl: 'put',
-    getUrl: 'get',
-    id: 'test123'
-  }
-  const s3urls = td.replace('../../../lib/s3-urls.js')
-  td.when(
-    s3urls('test123')
-    ).thenResolve(response)
-
-  const request /*: BmPutRequest */= {
-    body: '',
-    url: {
-      host: 'www.test.com',
-      hostname: 'test',
-      pathname: '/api/signedURL',
-      protocol: 'https:',
-      params: {
-        id: 'test123'
-      }
-    }
-  }
-
-  const api = require('../../../api/v1/signedURL.js')
-  api.put(request)
-  .then((res) => {
-    console.log('In promise then: ', res)
-    t.equal(res.id, 'test123')
   })
 
   t.end()
@@ -87,7 +56,8 @@ test('Should reject when id not passed in', t => {
       hostname: 'test',
       pathname: '/api/signedURL',
       protocol: 'https:',
-      params: {}
+      params: {},
+      query: {}
     }
   }
 

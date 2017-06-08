@@ -2,7 +2,7 @@
 'use strict'
 
 /* ::
-export type BmGetRequest = {
+export type BmPostRequest = {
     body : any,
     url: {
         host: string,
@@ -10,6 +10,11 @@ export type BmGetRequest = {
         pathname: string,
         protocol: 'http:' | 'https:'
     }
+}
+
+export type BmPostResponse = {
+    putUrl: string,
+    id: string
 }
 
 export type BmPutRequest = {
@@ -19,14 +24,17 @@ export type BmPutRequest = {
         hostname: string,
         params : { [id:string]: string },
         pathname: string,
-        protocol: 'http:' | 'https:'
+        protocol: 'http:' | 'https:',
+        query: BmPutQuery
     }
 }
 
-export type BmResponse = {
-    getUrl: string,
-    putUrl: string,
-    id: string
+export type BmPutQuery = {
+    expirySeconds?: number
+}
+
+export type BmPutResponse = {
+    getUrl: string
 }
 
 */

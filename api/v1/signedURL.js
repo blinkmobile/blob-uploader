@@ -2,7 +2,11 @@
 'use strict'
 
 /* ::
-import type {BmGetRequest} from '../../types.js'
+import type {BmPostRequest} from '../../types.js'
+*/
+
+/* ::
+import type {BmPostResponse} from '../../types.js'
 */
 
 /* ::
@@ -10,7 +14,7 @@ import type {BmPutRequest} from '../../types.js'
 */
 
 /* ::
-import type {BmResponse} from '../../types.js'
+import type {BmPutResponse} from '../../types.js'
 */
 const Boom = require('boom')
 const dotenv = require('dotenv')
@@ -19,9 +23,9 @@ const s3urls = require('../../lib/s3-urls.js')
 
 dotenv.config()
 
-module.exports.get = function get (
-    request /* : BmGetRequest */
-) /* : Promise<BmResponse> */ {
+module.exports.post = function post (
+    request /* : BmPostRequest */
+) /* : Promise<BmPostResponse> */ {
     // return signed urls for putting and later retrieving the blob
   return s3urls()
         .catch((err) => {
@@ -32,7 +36,7 @@ module.exports.get = function get (
 
 module.exports.put = function put (
   request /* : BmPutRequest */
-) /* : Promise<BmResponse> */ {
+) /* : Promise<BmPutResponse> */ {
   // validate input
   if (!request.url.params.id) {
     console.log('id not provied in request')
