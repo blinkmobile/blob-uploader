@@ -9,9 +9,7 @@ You can use Blob Uploader when your hosting solution doesn't allow large file up
 
 Once the service is deployed and available at a live URL ("https://YOUR_HOST_NAME" for the example below), you can use it like this:
 
-[1] Make an HTTP GET request to https://YOUR_HOST_NAME/v1/signedURL?id=YOUR_UUID or https://YOUR_HOST_NAME/v1/signedURL
-
-id is an optional parameter, if not included, an id (in uuid v4 format - https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_.28random.29) will be allocated and returned
+1. Make an HTTP GET request to https://YOUR_HOST_NAME/v1/signedURL?id=YOUR_UUID
 
 You will get back a JSON packet with two URLs and a id eg:
 
@@ -22,10 +20,10 @@ You will get back a JSON packet with two URLs and a id eg:
 "id": "003d96d4-31a8-4740-8b3a-5106aadf9b6d"
 }
 ```
-[2] Send a PUT request with your file to the "putURL"
+2. Send a PUT request with your file to the "putURL"
 
-[3] Retrieve your file later using the "getURL"
+3. Retrieve your file later using the "getURL"
 
-[4] Optional - Call service again passing the returned id to retrieve new URL's to the same S3 object with a new expiry time 
+4. OPTIONAL - Make an HTTP PUT request to https://YOUR_HOST_NAME/v1/signedURL/YOUR_ID Where YOUR_ID is an ID previously returned via the service. This is intended to be used to retrieve URL's with a new expiry time for an existing blob
 
-NOTE: The URLs will last for 24 hours. You can call Blob Uploader again, passing the same file name, to get two new URLs that will point to the same file.
+NOTE: The URLs will last for 24 hours.

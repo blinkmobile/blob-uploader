@@ -4,6 +4,10 @@ Runs as  BlinkMobile ServerCLI project(https://github.com/blinkmobile/server-cli
 
 When the API is called, the url query string may include an id which will be used as the key to the S3 object within the configured S3 bucket, if no id is provided a new id will be allocated.
 
+The API supports two usages:
+1. Called via HTTP GET - this will allocated a new id to be used as the S3 object key
+1. Called via HTTP POST - The request must include the id as a parameter in the URL, this id will be used as the S3 object key. This usage is intended for getting URL's with a new expiry time to an existing object
+
 The service will return two signed URL's via the AWS Node SDK (see http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property) which have the same permissions level to S3 as the AWS Lambda execution role to S3, the URL's can be used to HTTP PUT Binary content (i.e. a file) and to retrieve the file via a HTTP GET.
 
 The service will also return the id that was either allocated or passed in with the request.
