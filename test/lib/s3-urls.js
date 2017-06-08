@@ -8,16 +8,6 @@ test('Should succeed when passed valid input', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
         aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.geturl.com'
-    )
-
-  td.when(
-        aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything()
         )
@@ -29,15 +19,8 @@ test('Should succeed when passed valid input', (t) => {
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
-  const result = retrieveS3Urls()
+  const result = retrieveS3Urls.puturl()
 
-  td.verify(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
-    )
   td.verify(
         aws.prototype.getSignedUrl(
             'putObject',
@@ -50,7 +33,6 @@ test('Should succeed when passed valid input', (t) => {
   process.env.S3_BUCKET = ''
 
   result.then((urls) => {
-    t.equal(urls.getUrl, 'www.geturl.com')
     t.equal(urls.putUrl, 'www.puturl.com')
     t.assert(urls.id.length > 0)
   })
@@ -70,32 +52,15 @@ test('Returns id when id passed in', (t) => {
         'www.geturl.com'
     )
 
-  td.when(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.puturl.com'
-    )
-
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const id = 'dfosdkjfsdfj'
-  const result = retrieveS3Urls(id)
+  const result = retrieveS3Urls.geturl(id)
 
   td.verify(
         aws.prototype.getSignedUrl(
             'getObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
-    )
-  td.verify(
-        aws.prototype.getSignedUrl(
-            'putObject',
             td.matchers.anything(),
             td.matchers.anything()
         )
@@ -106,8 +71,6 @@ test('Returns id when id passed in', (t) => {
 
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
-    t.equal(urls.putUrl, 'www.puturl.com')
-    t.equal(urls.id, id)
   })
 
   t.end()
@@ -124,31 +87,15 @@ test('Should failed when geturl fails', (t) => {
         'S3 is down',
         ''
     )
-  td.when(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.puturl.com'
-    )
 
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
-  const result = retrieveS3Urls()
+  const result = retrieveS3Urls.geturl('sdsds')
 
   td.verify(
         aws.prototype.getSignedUrl(
             'getObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
-    )
-  td.verify(
-        aws.prototype.getSignedUrl(
-            'putObject',
             td.matchers.anything(),
             td.matchers.anything()
         )
@@ -163,15 +110,6 @@ test('Should failed when puturl fails', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
         aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.geturl.com'
-    )
-  td.when(
-        aws.prototype.getSignedUrl(
             'putObject',
             td.matchers.anything()
         )
@@ -183,15 +121,8 @@ test('Should failed when puturl fails', (t) => {
   const retrieveS3Urls = require('../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
-  const result = retrieveS3Urls()
+  const result = retrieveS3Urls.puturl()
 
-  td.verify(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
-    )
   td.verify(
         aws.prototype.getSignedUrl(
             'putObject',
