@@ -5,7 +5,7 @@
   "main": "api/v1/signedURL.js",
   "scripts": {
     "flow_check": "flow check",
-    "test": "blue-tape test/**/**/*.js test/**/**/**/*.js",
+    "test": "tape 'test/**/*.js'",
     "eslint": "eslint --fix --cache ."
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
@@ -17,7 +17,6 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "blue-tape": "^1.0.0",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.3.0",
@@ -26,6 +25,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.46.0",
     "npm-run-all": "^4.0.2",
+    "tape": "^4.6.3",
     "testdouble": "^2.1.2"
   },
   "engines": {

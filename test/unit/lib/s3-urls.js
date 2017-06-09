@@ -1,7 +1,7 @@
 /* @flow */
 'use strict'
 
-const test = require('blue-tape')
+const test = require('tape')
 const td = require('testdouble')
 
 test('Should succeed when passed valid input', (t) => {
@@ -29,14 +29,13 @@ test('Should succeed when passed valid input', (t) => {
         )
     )
 
-  td.reset()
-  process.env.S3_BUCKET = ''
-
   result.then((urls) => {
     t.equal(urls.putUrl, 'www.puturl.com')
     t.assert(urls.id.length > 0)
   })
 
+  td.reset()
+  process.env.S3_BUCKET = ''
   t.end()
 })
 
@@ -66,13 +65,12 @@ test('Returns geturl when id passed in', (t) => {
         )
     )
 
-  td.reset()
-  process.env.S3_BUCKET = ''
-
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
   })
 
+  td.reset()
+  process.env.S3_BUCKET = ''
   t.end()
 })
 
@@ -101,9 +99,12 @@ test('Should failed when geturl fails', (t) => {
         )
     )
 
+  result.catch((err) => {
+    t.equal(err, 'S3 is down')
+  })
   td.reset()
   process.env.S3_BUCKET = ''
-  return t.shouldReject(result)
+  t.end()
 })
 
 test('Should failed when puturl fails', (t) => {
@@ -131,9 +132,12 @@ test('Should failed when puturl fails', (t) => {
         )
     )
 
+  result.catch((err) => {
+    t.equal(err, 'S3 is down')
+  })
   td.reset()
   process.env.S3_BUCKET = ''
-  return t.shouldReject(result)
+  t.end()
 })
 
 test('Uses specified expiry time when passed in', (t) => {
@@ -169,13 +173,11 @@ test('Uses specified expiry time when passed in', (t) => {
         )
     )
 
-  td.reset()
-  process.env.S3_BUCKET = ''
-
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
   })
-
+  td.reset()
+  process.env.S3_BUCKET = ''
   t.end()
 })
 
@@ -211,12 +213,11 @@ test('Uses default expiry time when expiry not passed in', (t) => {
         )
     )
 
-  td.reset()
-  process.env.S3_BUCKET = ''
-
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
   })
 
+  td.reset()
+  process.env.S3_BUCKET = ''
   t.end()
 })

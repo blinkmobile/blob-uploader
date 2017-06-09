@@ -17,7 +17,7 @@ import type {BmPutRequest} from '../../../../types.js'
 import type {BmPutResponse} from '../../../../types.js'
 */
 
-const test = require('blue-tape')
+const test = require('tape')
 const boom = require('boom')
 const td = require('testdouble')
 
@@ -44,7 +44,7 @@ test('Should throw bad implementation if library fails', (t) => {
     console.log('In promise catch: ' + err)
     t.deepEqual(err, boom.badImplementation('Error calling S3 to retrieve signed URLs: Couldnt retrieve URLs'))
   })
-
+  td.reset()
   t.end()
 })
 
@@ -78,7 +78,7 @@ test('Should return geturl when id passed in', (t) => {
     console.log('In promise then: ', res)
     t.equal(res.getUrl, 'get')
   })
-
+  td.reset()
   t.end()
 })
 
@@ -102,6 +102,7 @@ test('Should reject when id not passed in', t => {
   } catch (err) {
     t.deepEqual(err, boom.badRequest('Please provide id', 'id'))
   }
+  td.reset()
   t.end()
 })
 
@@ -140,6 +141,6 @@ test('Should pass through expirySeconds from request', (t) => {
     console.log('In promise then: ', res)
     t.equal(res.getUrl, 'get')
   })
-
+  td.reset()
   t.end()
 })
