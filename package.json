@@ -5,7 +5,7 @@
   "main": "api/v1/signedURL.js",
   "scripts": {
     "flow_check": "flow check",
-    "test": "blue-tape test/**/*.js test/**/**/*.js",
+    "test": "blue-tape test/**/**/*.js test/**/**/**/*.js",
     "eslint": "eslint --fix --cache ."
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",

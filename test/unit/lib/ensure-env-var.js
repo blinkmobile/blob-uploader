@@ -3,7 +3,7 @@
 
 const test = require('blue-tape')
 const boom = require('boom')
-const lib = require('../../lib/ensure-env-var.js')
+const lib = require('../../../lib/ensure-env-var.js')
 
 test('Should throw Boom error if environment variable not set', (t) => {
   t.plan(1)

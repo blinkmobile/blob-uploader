@@ -2,19 +2,19 @@
 'use strict'
 
 /* ::
-import type {BmPostRequest} from '../../../types.js'
+import type {BmPostRequest} from '../../../../types.js'
 */
 
 /* ::
-import type {BmPostResponse} from '../../../types.js'
+import type {BmPostResponse} from '../../../../types.js'
 */
 
 /* ::
-import type {BmPutRequest} from '../../../types.js'
+import type {BmPutRequest} from '../../../../types.js'
 */
 
 /* ::
-import type {BmPutResponse} from '../../../types.js'
+import type {BmPutResponse} from '../../../../types.js'
 */
 
 const test = require('blue-tape')
@@ -23,7 +23,7 @@ const td = require('testdouble')
 
 test('Should throw bad implementation if library fails', (t) => {
   // setup stub of library
-  const s3urls = td.replace('../../../lib/s3-urls.js')
+  const s3urls = td.replace('../../../../lib/s3-urls.js')
   td.when(
     s3urls.puturl()
     ).thenReject('Couldnt retrieve URLs')
@@ -38,7 +38,7 @@ test('Should throw bad implementation if library fails', (t) => {
     }
   }
 
-  const api = require('../../../api/v1/signedURL.js')
+  const api = require('../../../../api/v1/signedURL.js')
   api.post(request)
   .catch((err) => {
     console.log('In promise catch: ' + err)
@@ -53,7 +53,7 @@ test('Should return geturl when id passed in', (t) => {
   const response /*: BmPutResponse */= {
     getUrl: 'get'
   }
-  const s3urls = td.replace('../../../lib/s3-urls.js')
+  const s3urls = td.replace('../../../../lib/s3-urls.js')
   td.when(
     s3urls.geturl('test123', td.matchers.anything())
   ).thenResolve(response)
@@ -72,7 +72,7 @@ test('Should return geturl when id passed in', (t) => {
     }
   }
 
-  const api = require('../../../api/v1/signedURL.js')
+  const api = require('../../../../api/v1/signedURL.js')
   api.put(request)
   .then((res) => {
     console.log('In promise then: ', res)
@@ -95,7 +95,7 @@ test('Should reject when id not passed in', t => {
     }
   }
 
-  const api = require('../../../api/v1/signedURL.js')
+  const api = require('../../../../api/v1/signedURL.js')
 
   try {
     api.put(request)
@@ -110,7 +110,7 @@ test('Should pass through expirySeconds from request', (t) => {
   const response /*: BmPutResponse */= {
     getUrl: 'get'
   }
-  const s3urls = td.replace('../../../lib/s3-urls.js')
+  const s3urls = td.replace('../../../../lib/s3-urls.js')
   td.when(
     s3urls.geturl(
       'test123',
@@ -134,7 +134,7 @@ test('Should pass through expirySeconds from request', (t) => {
     }
   }
 
-  const api = require('../../../api/v1/signedURL.js')
+  const api = require('../../../../api/v1/signedURL.js')
   api.put(request)
   .then((res) => {
     console.log('In promise then: ', res)

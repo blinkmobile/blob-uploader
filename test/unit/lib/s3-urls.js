@@ -16,7 +16,7 @@ test('Should succeed when passed valid input', (t) => {
         'www.puturl.com'
     )
 
-  const retrieveS3Urls = require('../../lib/s3-urls.js')
+  const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const result = retrieveS3Urls.puturl()
@@ -52,7 +52,7 @@ test('Returns geturl when id passed in', (t) => {
         'www.geturl.com'
     )
 
-  const retrieveS3Urls = require('../../lib/s3-urls.js')
+  const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const id = 'dfosdkjfsdfj'
@@ -88,7 +88,7 @@ test('Should failed when geturl fails', (t) => {
         ''
     )
 
-  const retrieveS3Urls = require('../../lib/s3-urls.js')
+  const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const result = retrieveS3Urls.geturl('sdsds')
@@ -118,7 +118,7 @@ test('Should failed when puturl fails', (t) => {
         ''
     )
 
-  const retrieveS3Urls = require('../../lib/s3-urls.js')
+  const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const result = retrieveS3Urls.puturl()
@@ -154,7 +154,7 @@ test('Uses specified expiry time when passed in', (t) => {
         'www.geturl.com'
     )
 
-  const retrieveS3Urls = require('../../lib/s3-urls.js')
+  const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const id = 'dfosdkjfsdfj'
@@ -197,7 +197,7 @@ test('Uses default expiry time when expiry not passed in', (t) => {
         'www.geturl.com'
     )
 
-  const retrieveS3Urls = require('../../lib/s3-urls.js')
+  const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
   process.env.S3_BUCKET = 'testbucket'
   const id = 'dfosdkjfsdfj'
