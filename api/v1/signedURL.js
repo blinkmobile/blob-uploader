@@ -27,6 +27,7 @@ module.exports.post = function post (
     request /* : BmPostRequest */
 ) /* : Promise<BmPostResponse> */ {
     // return signed urls for putting and later retrieving the blob
+  console.log('post called with request: ', request)
   return s3urls.puturl()
         .catch((err) => {
           console.log('Error calling S3 to retrieve signed URLs: ' + err)
@@ -37,6 +38,7 @@ module.exports.post = function post (
 module.exports.put = function put (
   request /* : BmPutRequest */
 ) /* : Promise<BmPutResponse> */ {
+  console.log('put called with request: ', request)
   // validate input
   if (!request.url.params.id) {
     console.log('id not provied in request')
