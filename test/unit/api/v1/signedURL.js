@@ -20,6 +20,43 @@ import type {BmPutResponse} from '../../../../types.js'
 const test = require('blue-tape')
 const td = require('testdouble')
 
+test('Should return put url', (t) => {
+  // setup stub of library
+  const s3urls = td.replace('../../../../lib/s3-urls.js')
+  const response /*: BmPostResponse */= {
+    putUrl: 'put',
+    id: 'abc'
+  }
+  td.when(
+      s3urls.puturl()
+    ).thenResolve(response)
+
+  const request /*: BmPostRequest */= {
+    body: '',
+    url: {
+      host: 'www.test.com',
+      hostname: 'test',
+      pathname: '/api/signedURL',
+      protocol: 'https:'
+    }
+  }
+
+  const api = require('../../../../api/v1/signedURL.js')
+  api.post(request)
+  .then((res) => {
+    console.log(res)
+    t.equal(res.putUrl, 'put')
+    t.equal(res.id, 'abc')
+    td.reset()
+    t.end()
+  })
+  .catch((err) => {
+    console.log('In promise catch: ', err)
+    t.fail('Test should have succeeded')
+    td.reset()
+  })
+})
+
 test('Should throw bad implementation if library fails', (t) => {
   // setup stub of library
   const s3urls = td.replace('../../../../lib/s3-urls.js')
