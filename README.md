@@ -9,21 +9,26 @@ You can use Blob Uploader when your hosting solution doesn't allow large file up
 
 Once the service is deployed and available at a live URL ("https://YOUR_HOST_NAME" for the example below), you can use it like this:
 
-1. Make an HTTP GET request to https://YOUR_HOST_NAME/v1/signedURL?id=YOUR_UUID
+1. Make an HTTP POST request to https://YOUR_HOST_NAME/v1/signedURL
 
-You will get back a JSON packet with two URLs and a id eg:
+You will get back a JSON packet with a PUT URL(which will expire after 1 hour) and a id eg:
 
 ```
 {
-"getUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=Zc27tJEwOvpU%2BaUALfMOzSjkc%2F0%3D",
 "putUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D",
 "id": "003d96d4-31a8-4740-8b3a-5106aadf9b6d"
 }
 ```
 2. Send a PUT request with your file to the "putURL"
 
-3. Retrieve your file later using the "getURL"
+3. Make an HTTP PUT request to https://YOUR_HOST_NAME/v1/signedURL/YOUR_ID?expirySeconds=SECONDS where YOUR_ID is the id returned from the previous call and SECONDS is the expiry period to use for the returned getURL, expirySeconds is optional and will default 1 hour if not provided
 
-4. OPTIONAL - Make an HTTP PUT request to https://YOUR_HOST_NAME/v1/signedURL/YOUR_ID Where YOUR_ID is an ID previously returned via the service. This is intended to be used to retrieve URL's with a new expiry time for an existing blob
+You will get back a JSON packet with a GET url:
 
-NOTE: The URLs will last for 24 hours.
+```
+{
+"getUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D"
+}
+```
+
+4. Retrieve your file within the expiry period using the "getURL"
