@@ -18,7 +18,6 @@ import type {BmPutResponse} from '../../../../types.js'
 */
 
 const test = require('blue-tape')
-const Boom = require('boom')
 const td = require('testdouble')
 
 test('Should throw bad implementation if library fails', (t) => {
