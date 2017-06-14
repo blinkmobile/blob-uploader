@@ -17,16 +17,16 @@ import type {BmPutRequest} from '../../../../types.js'
 import type {BmPutResponse} from '../../../../types.js'
 */
 
-const test = require('tape')
-const boom = require('boom')
+const test = require('blue-tape')
+const Boom = require('boom')
 const td = require('testdouble')
 
 test('Should throw bad implementation if library fails', (t) => {
   // setup stub of library
   const s3urls = td.replace('../../../../lib/s3-urls.js')
   td.when(
-    s3urls.puturl()
-    ).thenReject('Couldnt retrieve URLs')
+      s3urls.puturl()
+    ).thenReject('Couldnt retrieve put URL')
 
   const request /*: BmPostRequest */= {
     body: '',
@@ -40,12 +40,17 @@ test('Should throw bad implementation if library fails', (t) => {
 
   const api = require('../../../../api/v1/signedURL.js')
   api.post(request)
-  .catch((err) => {
-    console.log('In promise catch: ' + err)
-    t.deepEqual(err, boom.badImplementation('Error calling S3 to retrieve signed URLs: Couldnt retrieve URLs'))
+  .then((res) => {
+    console.log(res)
+    t.fail('Test should have succeeded')
+    td.reset()
   })
-  td.reset()
-  t.end()
+  .catch((err) => {
+    console.log('In promise catch: ', err)
+    t.equal(err.message, 'Error calling S3 to retrieve signed URLs: Couldnt retrieve put URL')
+    td.reset()
+    t.end()
+  })
 })
 
 test('Should return geturl when id passed in', (t) => {
@@ -77,9 +82,14 @@ test('Should return geturl when id passed in', (t) => {
   .then((res) => {
     console.log('In promise then: ', res)
     t.equal(res.getUrl, 'get')
+    td.reset()
+    t.end()
   })
-  td.reset()
-  t.end()
+  .catch((err) => {
+    console.log(err)
+    t.fail('Test should have succeeded')
+    td.reset()
+  })
 })
 
 test('Should reject when id not passed in', t => {
@@ -100,10 +110,9 @@ test('Should reject when id not passed in', t => {
   try {
     api.put(request)
   } catch (err) {
-    t.deepEqual(err, boom.badRequest('Please provide id', 'id'))
+    t.equal(err.message, 'Please provide id', 'id')
+    t.end()
   }
-  td.reset()
-  t.end()
 })
 
 test('Should pass through expirySeconds from request', (t) => {
@@ -140,7 +149,12 @@ test('Should pass through expirySeconds from request', (t) => {
   .then((res) => {
     console.log('In promise then: ', res)
     t.equal(res.getUrl, 'get')
+    td.reset()
+    t.end()
   })
-  td.reset()
-  t.end()
+  .catch((err) => {
+    console.log(err)
+    t.fail('Test should have succeeded')
+    td.reset()
+  })
 })

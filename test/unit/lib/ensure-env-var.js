@@ -1,7 +1,7 @@
 /* @flow */
 'use strict'
 
-const test = require('tape')
+const test = require('blue-tape')
 const boom = require('boom')
 const lib = require('../../../lib/ensure-env-var.js')
 
