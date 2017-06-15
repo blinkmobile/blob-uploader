@@ -1,4 +1,4 @@
-# Blob Uploader
+# blinkmobile / Blob Uploader [![Travis CI Status](https://travis-ci.org/blinkmobile/blob-uploader.svg?branch=master)](https://travis-ci.org/blinkmobile/blob-uploader) [![Greenkeeper badge](https://badges.greenkeeper.io/blinkmobile/blob-uploader.svg)](https://greenkeeper.io/)
 Secure S3 URL generation for file uploads.
 
 ## What is this?
@@ -9,18 +9,26 @@ You can use Blob Uploader when your hosting solution doesn't allow large file up
 
 Once the service is deployed and available at a live URL ("https://YOUR_HOST_NAME" for the example below), you can use it like this:
 
-[1] Make an HTTP GET request to https://YOUR_HOST_NAME/v1/signedURL?blobName=YOUR_FILE_NAME
+1. Make an HTTP POST request to https://YOUR_HOST_NAME/v1/signedURL
 
-You will get back a JSON packet with two URLs, eg:
+You will get back a JSON packet with a PUT URL(which will expire after 1 hour) and a id eg:
 
 ```
 {
-"getUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=Zc27tJEwOvpU%2BaUALfMOzSjkc%2F0%3D",
-"putUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D"
+"putUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D",
+"id": "003d96d4-31a8-4740-8b3a-5106aadf9b6d"
 }
 ```
-[2] Send a PUT request with your file to the "putURL"
+2. Send a PUT request with your file to the "putURL"
 
-[3] Retrieve your file later using the "getURL"
+3. Make an HTTP PUT request to https://YOUR_HOST_NAME/v1/signedURL/YOUR_ID?expirySeconds=SECONDS where YOUR_ID is the id returned from the previous call and SECONDS is the expiry period to use for the returned getURL, expirySeconds is optional and will default 1 hour if not provided
 
-NOTE: The URLs will last for 24 hours. You can call Blob Uploader again, passing the same file name, to get two new URLs that will point to the same file.
+You will get back a JSON packet with a GET url:
+
+```
+{
+"getUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D"
+}
+```
+
+4. Retrieve your file within the expiry period using the "getURL"

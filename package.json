@@ -5,15 +5,16 @@
   "main": "api/v1/signedURL.js",
   "scripts": {
     "flow_check": "flow check",
-    "test": "blue-tape test/**/*.js test/**/**/*.js",
+    "test": "blue-tape 'test/**/*.js' | tap-spec",
     "eslint": "eslint --fix --cache ."
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.57.0",
-    "boom": "^4.3.1",
-    "dotenv": "^4.0.0"
+    "aws-sdk": "2.57.0",
+    "boom": "4.3.1",
+    "dotenv": "4.0.0",
+    "uuid": "3.0.1"
   },
   "devDependencies": {
     "blue-tape": "^1.0.0",
@@ -24,6 +25,8 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "flow-bin": "^0.46.0",
+    "npm-run-all": "^4.0.2",
+    "tap-spec": "^4.1.1",
     "testdouble": "^2.1.2"
   },
   "engines": {
