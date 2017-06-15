@@ -24,15 +24,15 @@ const s3urls = require('../../lib/s3-urls.js')
 dotenv.config()
 
 module.exports.post = function post (
-    request /* : BmPostRequest */
+  request /* : BmPostRequest */
 ) /* : Promise<BmPostResponse> */ {
-    // return signed urls for putting and later retrieving the blob
+  // return signed urls for putting and later retrieving the blob
   console.log('post called with request: ', request)
   return s3urls.puturl()
-        .catch((err) => {
-          console.log('Error calling S3 to retrieve signed URLs: ' + err)
-          throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
-        })
+    .catch((err) => {
+      console.log('Error calling S3 to retrieve signed URLs: ' + err)
+      throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
+    })
 }
 
 module.exports.put = function put (
@@ -47,8 +47,8 @@ module.exports.put = function put (
 
   // return signed urls for putting and later retrieving the blob with the passed in id
   return s3urls.geturl(request.url.params.id, request.url.query.expirySeconds)
-        .catch((err) => {
-          console.log('Error calling S3 to retrieve signed URLs: ' + err)
-          throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
-        })
+    .catch((err) => {
+      console.log('Error calling S3 to retrieve signed URLs: ' + err)
+      throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
+    })
 }
