@@ -1,4 +1,4 @@
-# Blob Uploader
+# blinkmobile / Blob Uploader [![Travis CI Status](https://travis-ci.org/blinkmobile/blob-uploader.svg?branch=master)](https://travis-ci.org/blinkmobile/blob-uploader) [![Greenkeeper badge](https://badges.greenkeeper.io/blinkmobile/blob-uploader.svg)](https://greenkeeper.io/)
 Secure S3 URL generation for file uploads.
 
 ## What is this?

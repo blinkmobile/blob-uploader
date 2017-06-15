@@ -11,10 +11,10 @@
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.57.0",
-    "boom": "^4.3.1",
-    "dotenv": "^4.0.0",
-    "uuid": "^3.0.1"
+    "aws-sdk": "2.57.0",
+    "boom": "4.3.1",
+    "dotenv": "4.0.0",
+    "uuid": "3.0.1"
   },
   "devDependencies": {
     "blue-tape": "^1.0.0",
