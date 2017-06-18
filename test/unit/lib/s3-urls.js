@@ -7,14 +7,14 @@ const td = require('testdouble')
 test('Should succeed when passed valid input', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.puturl.com'
+    aws.prototype.getSignedUrl(
+      'putObject',
+      td.matchers.anything()
     )
+  ).thenCallback(
+    null,
+    'www.puturl.com'
+  )
 
   const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
@@ -22,12 +22,12 @@ test('Should succeed when passed valid input', (t) => {
   const result = retrieveS3Urls.puturl()
 
   td.verify(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
+    aws.prototype.getSignedUrl(
+      'putObject',
+      td.matchers.anything(),
+      td.matchers.anything()
     )
+  )
 
   result.then((urls) => {
     t.equal(urls.putUrl, 'www.puturl.com')
@@ -44,14 +44,14 @@ test('Should succeed when passed valid input', (t) => {
 test('Returns geturl when id passed in', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.geturl.com'
+    aws.prototype.getSignedUrl(
+      'getObject',
+      td.matchers.anything()
     )
+  ).thenCallback(
+    null,
+    'www.geturl.com'
+  )
 
   const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
@@ -60,12 +60,12 @@ test('Returns geturl when id passed in', (t) => {
   const result = retrieveS3Urls.geturl(id)
 
   td.verify(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
+    aws.prototype.getSignedUrl(
+      'getObject',
+      td.matchers.anything(),
+      td.matchers.anything()
     )
+  )
 
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
@@ -81,14 +81,14 @@ test('Returns geturl when id passed in', (t) => {
 test('Should failed when geturl fails', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        'S3 is down',
-        ''
+    aws.prototype.getSignedUrl(
+      'getObject',
+      td.matchers.anything()
     )
+  ).thenCallback(
+    'S3 is down',
+    ''
+  )
 
   const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
@@ -96,12 +96,12 @@ test('Should failed when geturl fails', (t) => {
   const result = retrieveS3Urls.geturl('sdsds')
 
   td.verify(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything(),
-            td.matchers.anything()
-        )
+    aws.prototype.getSignedUrl(
+      'getObject',
+      td.matchers.anything(),
+      td.matchers.anything()
     )
+  )
 
   result.then((err) => {
     console.log(err)
@@ -117,14 +117,14 @@ test('Should failed when geturl fails', (t) => {
 test('Should failed when puturl fails', (t) => {
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        'S3 is down',
-        ''
+    aws.prototype.getSignedUrl(
+      'putObject',
+      td.matchers.anything()
     )
+  ).thenCallback(
+    'S3 is down',
+    ''
+  )
 
   const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
@@ -132,12 +132,12 @@ test('Should failed when puturl fails', (t) => {
   const result = retrieveS3Urls.puturl()
 
   td.verify(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything()
-            , td.matchers.anything()
-        )
+    aws.prototype.getSignedUrl(
+      'putObject',
+      td.matchers.anything()
+      , td.matchers.anything()
     )
+  )
 
   result.then((err) => {
     console.log(err)
@@ -159,14 +159,14 @@ test('Uses specified expiry time when passed in', (t) => {
 
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            params
-        )
-    ).thenCallback(
-        null,
-        'www.geturl.com'
+    aws.prototype.getSignedUrl(
+      'getObject',
+      params
     )
+  ).thenCallback(
+    null,
+    'www.geturl.com'
+  )
 
   const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
@@ -176,12 +176,12 @@ test('Uses specified expiry time when passed in', (t) => {
   const result = retrieveS3Urls.geturl(id, expirySeconds)
 
   td.verify(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            params,
-            td.matchers.anything()
-        )
+    aws.prototype.getSignedUrl(
+      'getObject',
+      params,
+      td.matchers.anything()
     )
+  )
 
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')
@@ -203,14 +203,14 @@ test('Uses default expiry time when expiry not passed in', (t) => {
 
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            params
-        )
-    ).thenCallback(
-        null,
-        'www.geturl.com'
+    aws.prototype.getSignedUrl(
+      'getObject',
+      params
     )
+  ).thenCallback(
+    null,
+    'www.geturl.com'
+  )
 
   const retrieveS3Urls = require('../../../lib/s3-urls.js')
 
@@ -219,12 +219,12 @@ test('Uses default expiry time when expiry not passed in', (t) => {
   const result = retrieveS3Urls.geturl(id)
 
   td.verify(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            params,
-            td.matchers.anything()
-        )
+    aws.prototype.getSignedUrl(
+      'getObject',
+      params,
+      td.matchers.anything()
     )
+  )
 
   result.then((urls) => {
     t.equal(urls.getUrl, 'www.geturl.com')

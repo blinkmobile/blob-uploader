@@ -25,14 +25,14 @@ test('API should return put url and id when post request sent', (t) => {
   // setup aws stub
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'putObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.puturl.com'
+    aws.prototype.getSignedUrl(
+      'putObject',
+      td.matchers.anything()
     )
+  ).thenCallback(
+    null,
+    'www.puturl.com'
+  )
 
   const request /*: BmPostRequest */= {
     body: '',
@@ -55,13 +55,13 @@ test('API should return put url and id when post request sent', (t) => {
     Object.keys(require.cache).forEach((key) => { delete require.cache[key] }) // Clear require cache so future tests reload/inject dependencies
     t.end()
   })
-  .catch((err) => {
-    console.log(err)
-    t.fail('Test should have succeeded')
-    td.reset()
-    process.env.S3_BUCKET = ''
-    Object.keys(require.cache).forEach((key) => { delete require.cache[key] }) // Clear require cache so future tests reload/inject dependencies
-  })
+    .catch((err) => {
+      console.log(err)
+      t.fail('Test should have succeeded')
+      td.reset()
+      process.env.S3_BUCKET = ''
+      Object.keys(require.cache).forEach((key) => { delete require.cache[key] }) // Clear require cache so future tests reload/inject dependencies
+    })
 })
 
 test('API should return get url when put request sent', (t) => {
@@ -70,14 +70,14 @@ test('API should return get url when put request sent', (t) => {
   // setup aws stub
   const aws = td.replace('aws-sdk').S3
   td.when(
-        aws.prototype.getSignedUrl(
-            'getObject',
-            td.matchers.anything()
-        )
-    ).thenCallback(
-        null,
-        'www.geturl.com'
+    aws.prototype.getSignedUrl(
+      'getObject',
+      td.matchers.anything()
     )
+  ).thenCallback(
+    null,
+    'www.geturl.com'
+  )
 
   const request /*: BmPutRequest */= {
     body: '',
@@ -106,11 +106,11 @@ test('API should return get url when put request sent', (t) => {
     Object.keys(require.cache).forEach((key) => { delete require.cache[key] }) // Clear require cache so future tests reload/inject dependencies
     t.end()
   })
-  .catch((err) => {
-    console.log(err)
-    t.fail('Test should have succeeded', 'Expected promise to resolve not reject')
-    td.reset()
-    process.env.S3_BUCKET = ''
-    Object.keys(require.cache).forEach((key) => { delete require.cache[key] }) // Clear require cache so future tests reload/inject dependencies
-  })
+    .catch((err) => {
+      console.log(err)
+      t.fail('Test should have succeeded', 'Expected promise to resolve not reject')
+      td.reset()
+      process.env.S3_BUCKET = ''
+      Object.keys(require.cache).forEach((key) => { delete require.cache[key] }) // Clear require cache so future tests reload/inject dependencies
+    })
 })
