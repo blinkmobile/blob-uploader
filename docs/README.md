@@ -2,6 +2,6 @@
 
 ## Documentation
 
-1. [Developer](./developer.md)
+1.  [Developer](./developer.md)
 
-1. [Deployment](./deployment.md)
+1.  [Deployment](./deployment.md)
