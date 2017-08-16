@@ -31,7 +31,7 @@ module.exports.post = function post (
   return s3urls.puturl()
     .catch((err) => {
       console.log('Error calling S3 to retrieve signed URLs: ' + err)
-      throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
+      throw Boom.badImplementation('Internal Server error')
     })
 }
 
@@ -49,6 +49,6 @@ module.exports.put = function put (
   return s3urls.geturl(request.url.params.id, request.url.query.expirySeconds)
     .catch((err) => {
       console.log('Error calling S3 to retrieve signed URLs: ' + err)
-      throw Boom.badImplementation('Error calling S3 to retrieve signed URLs: ' + err)
+      throw Boom.badImplementation('Internal Server error')
     })
 }

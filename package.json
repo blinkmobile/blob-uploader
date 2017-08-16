@@ -6,7 +6,8 @@
   "scripts": {
     "flow_check": "flow check",
     "test": "nyc blue-tape 'test/**/*.js' | tap-spec",
-    "eslint": "eslint --fix --cache ."
+    "eslint": "eslint --fix --cache .",
+    "pretest": "npm-run-all flow_check eslint"
   },
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "license": "MIT",

@@ -2,7 +2,11 @@
 This project is a AWS Lambda function that must be deployed with [BlinkMobile's ServerCLI](https://github.com/blinkmobile/server-cli).
 
 ## Environment variables
-In the Lambda function configuration, set an environment variable called "S3_BUCKET" to the name of the S3 bucket.
+
+| Key                                | Default   | Description                                                         |
+|------------------------------------|-----------|---------------------------------------------------------------------|
+| S3_BUCKET                          |           | S3 bucket to be used for storing blobs                              |
+| ASSUMING_ARN                       |           | The ARN of the role to assume when generating temporary credentials |
 
 ## AWS Permissions
 Once deployed, the Lambda function needs to have an execution role with both get object and put object permissions to the S3 bucket. This is an example policy:
@@ -36,3 +40,5 @@ The S3 bucket will also need to have the following CORS configuration:
 </CORSRule>
 </CORSConfiguration>
 ```
+
+Additional the assumed role of the lambda when being executed (e.g arn:aws:sts::905283649950:assumed-role/ServerCLI-lambda-execution/bm-blob-uploader-api-blinkm-io-dev) will need to be a trusted entity for the role being assumed for temporary credentials

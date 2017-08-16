@@ -11,6 +11,10 @@
       {
         "route": "/v1/signedURL/{id}",
         "module": "./api/v1/signedURL.js"
+      },
+      {
+        "route": "/v1/temporaryCredentials",
+        "module": "./api/v1/temporaryCredentials.js"
       }
     ]
   }
