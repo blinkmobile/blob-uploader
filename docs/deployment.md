@@ -34,8 +34,10 @@ The S3 bucket will also need to have the following CORS configuration:
 <CORSRule>
     <AllowedOrigin>*</AllowedOrigin>
     <AllowedMethod>PUT</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
     <AllowedMethod>GET</AllowedMethod>
     <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <ExposeHeader>ETag</ExposeHeader>
     <AllowedHeader>*</AllowedHeader>
 </CORSRule>
 </CORSConfiguration>
