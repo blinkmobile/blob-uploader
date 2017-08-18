@@ -38,6 +38,7 @@ The S3 bucket will also need to have the following CORS configuration:
     <AllowedMethod>GET</AllowedMethod>
     <MaxAgeSeconds>3000</MaxAgeSeconds>
     <ExposeHeader>ETag</ExposeHeader>
+    <ExposeHeader>x-amz-request-id</ExposeHeader>
     <AllowedHeader>*</AllowedHeader>
 </CORSRule>
 </CORSConfiguration>
