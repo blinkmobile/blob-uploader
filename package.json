@@ -1,15 +1,8 @@
 {
   "name": "blob-uploader",
-  "version": "0.0.1",
   "description": "Facilitates blob uploads for S3 storage",
-  "main": "api/v1/signedURL.js",
-  "scripts": {
-    "flow_check": "flow check",
-    "test": "nyc blue-tape 'test/**/*.js' | tap-spec",
-    "eslint": "eslint --fix --cache ."
-  },
+  "version": "0.0.2",
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
-  "license": "MIT",
   "dependencies": {
     "aws-sdk": "2.101.0",
     "boom": "5.2.0",
@@ -24,9 +17,13 @@
     "eslint-plugin-node": "^5.1.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "fixpack": "^2.3.1",
     "flow-bin": "^0.53.0",
     "npm-run-all": "^4.0.2",
     "nyc": "^11.0.2",
+    "remark-cli": "^4.0.0",
+    "remark-lint": "^6.0.0",
+    "remark-preset-lint-recommended": "^3.0.0",
     "tap-spec": "^4.1.1",
     "testdouble": "3.1.1"
   },
@@ -37,5 +34,15 @@
   "files": [
     "api",
     "lib"
-  ]
+  ],
+  "license": "MIT",
+  "main": "api/v1/signedURL.js",
+  "scripts": {
+    "eslint": "eslint --fix --cache .",
+    "fixpack": "fixpack",
+    "flow_check": "flow check",
+    "pretest": "npm-run-all flow_check eslint fixpack remark",
+    "remark": "remark . --use remark-preset-lint-recommended",
+    "test": "nyc blue-tape 'test/**/*.js' | tap-spec"
+  }
 }

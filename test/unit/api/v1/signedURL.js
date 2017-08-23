@@ -83,7 +83,7 @@ test('Post should throw bad implementation if library fails', (t) => {
     })
     .catch((err) => {
       console.log('In promise catch: ', err)
-      t.equal(err.message, 'Error calling S3 to retrieve signed URLs: Couldnt retrieve put URL')
+      t.equal(err.message, 'Error calling S3 to retrieve upload details: Couldnt retrieve put URL')
       td.reset()
       t.end()
     })
@@ -225,7 +225,7 @@ test('Put should throw bad implementation if library fails', (t) => {
     })
     .catch((err) => {
       console.log('In promise catch: ', err)
-      t.equal(err.message, 'Error calling S3 to retrieve signed URLs: Couldnt retrieve get URL')
+      t.equal(err.message, 'Error calling S3 to retrieve GET URL: Couldnt retrieve get URL')
       td.reset()
       t.end()
     })
