@@ -4,7 +4,7 @@
   "version": "0.0.2",
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "dependencies": {
-    "aws-sdk": "2.99.0",
+    "aws-sdk": "2.101.0",
     "boom": "5.2.0",
     "dotenv": "4.0.0",
     "uuid": "3.1.0"
@@ -18,7 +18,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "fixpack": "^2.3.1",
-    "flow-bin": "^0.52.0",
+    "flow-bin": "^0.53.0",
     "npm-run-all": "^4.0.2",
     "nyc": "^11.0.2",
     "remark-cli": "^4.0.0",
