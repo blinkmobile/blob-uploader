@@ -30,8 +30,8 @@ module.exports.post = function post (
   console.log('post called with request: ', request)
   return s3urls.puturl()
     .catch((err) => {
-      console.log('Error calling S3 to retrieve signed URLs: ' + err)
-      throw Boom.badImplementation('Internal Server error')
+      console.log('Error calling S3 to retrieve upload details: ' + err)
+      throw Boom.badImplementation('Error calling S3 to retrieve upload details: ' + err)
     })
 }
 
@@ -41,14 +41,14 @@ module.exports.put = function put (
   console.log('put called with request: ', request)
   // validate input
   if (!request.url.params.id) {
-    console.log('id not provied in request')
+    console.log('id not provided in request')
     throw Boom.badRequest('Please provide id', 'id')
   }
 
   // return signed urls for putting and later retrieving the blob with the passed in id
   return s3urls.geturl(request.url.params.id, request.url.query.expirySeconds)
     .catch((err) => {
-      console.log('Error calling S3 to retrieve signed URLs: ' + err)
-      throw Boom.badImplementation('Internal Server error')
+      console.log('Error calling S3 to retrieve GET URL: ' + err)
+      throw Boom.badImplementation('Error calling S3 to retrieve GET URL: ' + err)
     })
 }

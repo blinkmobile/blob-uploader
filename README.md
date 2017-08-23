@@ -15,7 +15,7 @@ Once the service is deployed and available at a live URL ("<https://YOUR_HOST_NA
 
 You will get back a JSON packet with a PUT URL(which will expire after 1 hour) and a id eg:
 
-```
+```json
 {
 "putUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D",
 "id": "003d96d4-31a8-4740-8b3a-5106aadf9b6d"
@@ -29,7 +29,7 @@ OR
 
 You will get back a JSON packet with temporary AWS credentials for uploading to S3 for the specified bucket and key, eg:
 
-```
+```json
 {
     "credentials": {
         "AccessKeyId": "",
@@ -48,7 +48,7 @@ You will get back a JSON packet with temporary AWS credentials for uploading to 
 
 You will get back a JSON packet with a GET url:
 
-```
+```json
 {
 "getUrl": "https://blob1.s3.amazonaws.com/blahblob?AWSAccessKeyId=AKIAIDAL6KPDH3MZAD3Q&Expires=1496814897&Signature=dOfxf9LtO7kBa6n05h0%2Bt8RCtK0%3D"
 }
