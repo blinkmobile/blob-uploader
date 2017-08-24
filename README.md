@@ -27,7 +27,7 @@ OR
 
 1.  Make a HTTP get request to <https://YOUR_HOST_NAME/v1/temporaryCredentails>
 
-You will get back a JSON packet with temporary AWS credentials for uploading to S3 for the specified bucket and key, eg:
+You will get back a JSON packet with temporary AWS credentials for uploading to S3 for the specified region, bucket and key, eg:
 
 ```json
 {
@@ -38,7 +38,8 @@ You will get back a JSON packet with temporary AWS credentials for uploading to 
         "Expiration": ""
     },
     "bucket": "",
-    "id": ""
+    "id": "",
+    "region": ""
 }
 ```
 2.  Use the AWS SDK functions putObject or upload to upload blob using the credentials, bucket and id(use as the key) from the previous call
