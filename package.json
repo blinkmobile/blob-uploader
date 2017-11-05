@@ -5,7 +5,7 @@
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "dependencies": {
     "aws-sdk": "2.143.0",
-    "boom": "7.0.0",
+    "boom": "7.1.0",
     "dotenv": "4.0.0",
     "uuid": "3.1.0"
   },
