@@ -21,7 +21,7 @@
     "flow-bin": "^0.63.1",
     "npm-run-all": "^4.0.2",
     "nyc": "^11.0.2",
-    "remark-cli": "^4.0.0",
+    "remark-cli": "^5.0.0",
     "remark-lint": "^6.0.0",
     "remark-preset-lint-recommended": "^3.0.0",
     "tap-spec": "^4.1.1",
