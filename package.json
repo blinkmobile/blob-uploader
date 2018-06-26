@@ -7,7 +7,7 @@
     "aws-sdk": "2.234.1",
     "boom": "7.2.0",
     "dotenv": "5.0.1",
-    "uuid": "3.2.1"
+    "uuid": "3.3.0"
   },
   "devDependencies": {
     "blue-tape": "^1.0.0",
