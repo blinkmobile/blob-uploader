@@ -4,7 +4,7 @@
   "version": "0.0.2",
   "author": "Kieren Powell <kieren@blinkmobile.com.au>",
   "dependencies": {
-    "aws-sdk": "2.234.1",
+    "aws-sdk": "2.271.1",
     "boom": "7.2.0",
     "dotenv": "5.0.1",
     "uuid": "3.2.1"
